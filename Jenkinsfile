@@ -1,8 +1,5 @@
 pipeline {
-    agent { label 'linux' }
-    tools { 
-        maven 'maven-3.8.3'
-    }
+    agent { docker 'maven:3.5-alpine' }
     stages {
         stage('Checkout') {
             steps {
@@ -12,21 +9,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "which java"
-                sh "java -version"
-                sh "javac -version"
-                sh 'mvn clean compile'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-                junit '**/target/surefire-reports/TEST-*.xml'
-            }
-        }
-        stage('Package') {
-            steps {
-                sh 'mvn package'
+                 sh 'mvn clean package'
+                 junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
     }
