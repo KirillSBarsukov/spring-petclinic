@@ -4,7 +4,7 @@ pipeline {
         maven 'maven-3.8.3'
     }
     stages {
-        stage('checkot') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
                     url: "https://github.com/KirillSBarsukov/spring-petclinic.git"
@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clear compile'
+                sh 'mvn clean compile'
             }
         }
         stage('Test') {
