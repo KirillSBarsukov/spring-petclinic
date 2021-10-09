@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('checkot') {
             steps {
-                git "https://github.com/KirillSBarsukov/spring-petclinic.git"
+                git branch: 'main',
+                    url: "https://github.com/KirillSBarsukov/spring-petclinic.git"
             }
         }
         stage('Build') {
